@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ A Little Universe Made Just for You ✨</title>
+    <meta name="description" content="A magical, emotional, and unforgettable birthday website created with love.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Dynamic Animated Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Custom Cursor Glow -->
+    <div id="cursorGlow"></div>
+
+    <!-- Floating Sparkle Particles Container -->
+    <div id="sparkleContainer"></div>
+
+    <!-- Floating Music Player -->
+    <div class="music-player-pill" id="musicPlayer">
+        <button class="music-btn" id="playPauseBtn" aria-label="Toggle Music">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="music-info">
+            <span class="music-title">✨ Celestial Birthday Melody</span>
+            <div class="sound-wave" id="soundWave">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="volume-control">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="vol-icon"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7">
+        </div>
+    </div>
+
+    <!-- Cinematic Intro Overlay -->
+    <div id="introOverlay">
+        <div class="intro-content">
+            <div class="intro-star-icon">✨</div>
+            <div class="intro-step active" id="introStep1">
+                <p class="intro-text">For Someone Truly Special...</p>
+            </div>
+            <div class="intro-step" id="introStep2">
+                <p class="intro-text">Today isn't just another day...</p>
+            </div>
+            <div class="intro-step" id="introStep3">
+                <p class="intro-text">It's the birthday of someone who makes the world a little brighter.</p>
+            </div>
+            <div class="intro-step" id="introStep4">
+                <h1 class="intro-name">Happy Birthday<br><span class="highlight-name" id="birthdayName">Kimathra (kimi)❤️</span></h1>
+            </div>
+            <button class="intro-start-btn hidden" id="enterUniverseBtn">
+                <span>Enter Your Universe ✨</span>
+            </button>
+            <p class="intro-audio-hint">🎵 Click anywhere to start the experience with soft music</p>
+        </div>
+    </div>
+
+    <!-- Main Experience Container -->
+    <main id="mainApp" class="hidden-initially">
+
+        <!-- 🎂 HERO SECTION -->
+        <section id="hero" class="section hero-section">
+            <div class="glass-card hero-card fade-in-up">
+                <div class="glowing-badge">✨ A Little Universe Made Just For You</div>
+                <h1 class="hero-title">Happy Birthday <span class="heart-pulse">❤️</span></h1>
+                <p class="hero-subtitle">"You deserve every beautiful thing life has to offer."</p>
+                
+                <div class="hero-actions">
+                    <button class="btn-primary glow-btn" id="beginSurpriseBtn">
+                        <span>Begin the Surprise ✨</span>
+                        <div class="btn-glow-layer"></div>
+                    </button>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to Explore</span>
+                <div class="chevron"></div>
+            </div>
+        </section>
+
+        <!-- 💌 LOVE LETTER SECTION -->
+        <section id="letter" class="section letter-section">
+            <div class="section-header fade-in">
+                <span class="section-tag">💌 From The Heart</span>
+                <h2 class="section-title">A Special Letter For You</h2>
+                <p class="section-desc">Tap the envelope to open your birthday message</p>
+            </div>
+
+            <div class="envelope-container fade-in-up">
+                <div class="envelope-wrapper" id="envelopeWrapper">
+                    <div class="envelope">
+                        <div class="envelope-back"></div>
+                        <div class="letter" id="letterPaper">
+                            <div class="letter-stamp">🎂</div>
+                            <div class="letter-content">
+                                <div id="typedText"></div>
+                                <span class="typing-cursor">|</span>
+                            </div>
+                        </div>
+                        <div class="envelope-pocket"></div>
+                        <div class="envelope-flap" id="envelopeFlap">
+                            <div class="envelope-seal">💖</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="envelope-hint" id="envelopeHint">✨ Click the envelope seal to open ✨</p>
+            </div>
+        </section>
+
+        <!-- 📸 PHOTO GALLERY SECTION -->
+        <section id="gallery" class="section gallery-section">
+            <div class="section-header fade-in">
+                <span class="section-tag">📸 Precious Moments</span>
+                <h2 class="section-title">Memory Gallery</h2>
+                <p class="section-desc">Snapshots of joy, laughter, and radiance</p>
+            </div>
+
+            <div class="polaroid-grid">
+                <!-- Polaroid 1 -->
+                <div class="polaroid-card fade-in-up" style="--rot: -3deg;">
+                    <div class="tape-graphic"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="C:\Users\vinot\Downloads\Mobile Devices\image2.jpg" alt="Beautiful Moment 1" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-overlay">✨</div>
+                    </div>
+                    <div class="polaroid-caption">Your Radiant Smile 🌸</div>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="polaroid-card fade-in-up" style="--rot: 2deg; --delay: 0.1s;">
+                    <div class="tape-graphic"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="C:\Users\vinot\Downloads\Mobile Devices\image4.jpg" alt="Beautiful Moment 2" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-overlay">💖</div>
+                    </div>
+                    <div class="polaroid-caption">Pure Happiness ✨</div>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="polaroid-card fade-in-up" style="--rot: -2deg; --delay: 0.2s;">
+                    <div class="tape-graphic"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="C:\Users\vinot\Downloads\Mobile Devices\image3.jpg" alt="Beautiful Moment 3" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-overlay">⭐</div>
+                    </div>
+                    <div class="polaroid-caption">Golden Hour Glow 🌅</div>
+                </div>
+
+                <!-- Polaroid 4 -->
+                <div class="polaroid-card fade-in-up" style="--rot: 4deg; --delay: 0.3s;">
+                    <div class="tape-graphic"></div>
+                    <div class="polaroid-img-wrapper">
+                        <img src="C:\Users\vinot\Downloads\Mobile Devices\image1.jpg" alt="Beautiful Moment 4" class="polaroid-img" loading="lazy">
+                        <div class="polaroid-overlay">🎀</div>
+                    </div>
+                    <div class="polaroid-caption">Unforgettable thought🎂</div>
+                </div>
+            </div>
+            <p class="gallery-note">💡 <em></em></p>
+        </section>
+
+        <!-- ✨ WHY YOU'RE SPECIAL SECTION -->
+        <section id="special" class="section special-section">
+            <div class="section-header fade-in">
+                <span class="section-tag">⭐ Pure Magic</span>
+                <h2 class="section-title">Why You're So Special</h2>
+                <p class="section-desc">Just a few of the infinite reasons you are cherished</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="glass-card special-card fade-in-up">
+                    <div class="card-icon">❤️</div>
+                    <h3>Your Smile</h3>
+                    <p>Capable of lighting up the darkest room and turning any shadow into warm sunshine instantly.</p>
+                </div>
+
+                <div class="glass-card special-card fade-in-up" style="--delay: 0.1s;">
+                    <div class="card-icon">🌸</div>
+                    <h3>Your Kindness</h3>
+                    <p>Gentle, selfless, and thoughtful. Your heart makes everyone feel safe, seen, and deeply valued.</p>
+                </div>
+
+                <div class="glass-card special-card fade-in-up" style="--delay: 0.2s;">
+                    <div class="card-icon">✨</div>
+                    <h3>Your Heart</h3>
+                    <p>Pure gold. You bring genuine care, affection, and unconditional warmth wherever you go.</p>
+                </div>
+
+                <div class="glass-card special-card fade-in-up" style="--delay: 0.3s;">
+                    <div class="card-icon">😊</div>
+                    <h3>Your Laugh</h3>
+                    <p>The sweetest, most contagious sound. Hearing you laugh makes the whole world feel brighter.</p>
+                </div>
+
+                <div class="glass-card special-card fade-in-up" style="--delay: 0.4s;">
+                    <div class="card-icon">🌈</div>
+                    <h3>Your Positivity</h3>
+                    <p>An uplifting beacon of optimism that inspires everyone to see the beauty in every single day.</p>
+                </div>
+
+                <div class="glass-card special-card fade-in-up" style="--delay: 0.5s;">
+                    <div class="card-icon">⭐</div>
+                    <h3>Everything About You</h3>
+                    <p>Simply unique, unforgettable, and irreplaceable. Being around you is a true blessing.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🕰 MEMORIES TIMELINE -->
+        <section id="memories" class="section timeline-section">
+            <div class="section-header fade-in">
+                <span class="section-tag">🕰 Journey of Moments</span>
+                <h2 class="section-title">Treasured Memories</h2>
+                <p class="section-desc">A timeline of beautiful milestones and unforgettable chapters</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item left fade-in-up">
+                    <div class="timeline-dot">🌸</div>
+                    <div class="glass-card timeline-card">
+                        <span class="timeline-date">Chapter 1</span>
+                        <h3>The First Hello</h3>
+                        <p>The quiet, magical moment our paths crossed and a beautiful story began.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right fade-in-up">
+                    <div class="timeline-dot">☕</div>
+                    <div class="glass-card timeline-card">
+                        <span class="timeline-date">Chapter 2</span>
+                        <h3>The First Long Conversation</h3>
+                        <p>Hours felt like fleeting seconds as we talked endlessly under the quiet night sky.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left fade-in-up">
+                    <div class="timeline-dot">😂</div>
+                    <div class="glass-card timeline-card">
+                        <span class="timeline-date">Chapter 3</span>
+                        <h3>The Funniest Memory</h3>
+                        <p>Uncontrollable tears of laughter that created a memory we still joke about today.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right fade-in-up">
+                    <div class="timeline-dot">🌅</div>
+                    <div class="glass-card timeline-card">
+                        <span class="timeline-date">Chapter 4</span>
+                        <h3>Beautiful Moments</h3>
+                        <p>Shared joy, quiet understanding, and small adventures that mean the absolute world.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item left fade-in-up">
+                    <div class="timeline-dot">🎂</div>
+                    <div class="glass-card timeline-card highlight-card">
+                        <span class="timeline-date">Today</span>
+                        <h3>Celebrating You!</h3>
+                        <p>A glorious day dedicated to honoring the magnificent person you are.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right fade-in-up">
+                    <div class="timeline-dot">✨</div>
+                    <div class="glass-card timeline-card">
+                        <span class="timeline-date">The Future</span>
+                        <h3>More Memories to Come...</h3>
+                        <p>An endless horizon of adventures, dreams, and happiness waiting for you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🎂 INTERACTIVE 3D BIRTHDAY CAKE -->
+        <section id="cake" class="section cake-section">
+            <div class="section-header fade-in">
+                <span class="section-tag">🎂 Make A Wish</span>
+                <h2 class="section-title">The Birthday Cake</h2>
+                <p class="section-desc">Make a wish in your heart, then blow out the candles!</p>
+            </div>
+
+            <div class="cake-stage fade-in-up">
+                <div class="cake-container">
+                    <div class="cake-plate"></div>
+                    
+                    <!-- Cake Bottom Layer -->
+                    <div class="cake-layer bottom-layer">
+                        <div class="icing-drips"></div>
+                    </div>
+
+                    <!-- Cake Top Layer -->
+                    <div class="cake-layer top-layer">
+                        <div class="icing-drips"></div>
+                    </div>
+
+                    <!-- Candles Container -->
+                    <div class="candles-container">
+                        <div class="candle">
+                            <div class="flame-glow"></div>
+                            <div class="flame"></div>
+                            <div class="wick"></div>
+                        </div>
+                        <div class="candle center-candle">
+                            <div class="flame-glow"></div>
+                            <div class="flame"></div>
+                            <div class="wick"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame-glow"></div>
+                            <div class="flame"></div>
+                            <div class="wick"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cake-controls">
+                    <button class="btn-primary glow-btn" id="blowCandlesBtn">
+                        <span id="blowBtnText">💨 Blow The Candles</span>
+                    </button>
+                    <p class="cake-status" id="cakeStatus">Flickering flames await your wish... ✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🎁 SURPRISE CELEBRATION BUTTON -->
+        <section id="surprise" class="section surprise-section">
+            <div class="glass-card surprise-card fade-in-up">
+                <div class="surprise-badge">🎁 A Grand Celebration</div>
+                <h2>Ready for Your Grand Surprise?</h2>
+                <p>Click the magical button below to unleash the birthday magic!</p>
+                
+                <button class="btn-surprise glow-btn pulse-glow" id="surpriseBtn">
+                    <span>Click Me 🎉</span>
+                    <div class="btn-sparkles"></div>
+                </button>
+
+                <div class="surprise-message hidden" id="surpriseMessage">
+                    <div class="surprise-text-glow">"You deserve all the happiness in the world." 💖</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🌹 WISHES CAROUSEL SECTION -->
+        <section id="wishes" class="section wishes-section">
+            <div class="section-header fade-in">
+                <span class="section-tag">🌠 Heartfelt Wishes</span>
+                <h2 class="section-title">Wishes For Your Journey</h2>
+                <p class="section-desc">May these blessings surround you today and always</p>
+            </div>
+
+            <div class="wishes-carousel-wrapper fade-in-up">
+                <button class="carousel-nav prev-btn" id="wishPrevBtn" aria-label="Previous Wish">❮</button>
+                <div class="wishes-carousel" id="wishesCarousel">
+                    <div class="wish-card glass-card active">
+                        <div class="wish-icon">🌸</div>
+                        <p class="wish-text">"May you always smile as brightly as you do today."</p>
+                    </div>
+                    <div class="wish-card glass-card">
+                        <div class="wish-icon">🌠</div>
+                        <p class="wish-text">"May every wish you whisper to the stars come true."</p>
+                    </div>
+                    <div class="wish-card glass-card">
+                        <div class="wish-icon">💖</div>
+                        <p class="wish-text">"May happiness always find its way to your doorstep."</p>
+                    </div>
+                    <div class="wish-card glass-card">
+                        <div class="wish-icon">🕊️</div>
+                        <p class="wish-text">"May your heart always stay peaceful, calm, and filled with love."</p>
+                    </div>
+                    <div class="wish-card glass-card">
+                        <div class="wish-icon">⭐</div>
+                        <p class="wish-text">"May boundless success and joy follow every step of your journey."</p>
+                    </div>
+                    <div class="wish-card glass-card">
+                        <div class="wish-icon">🎁</div>
+                        <p class="wish-text">"May life continuously surprise you with breathtakingly beautiful moments."</p>
+                    </div>
+                </div>
+                <button class="carousel-nav next-btn" id="wishNextBtn" aria-label="Next Wish">❯</button>
+            </div>
+
+            <div class="carousel-dots" id="carouselDots"></div>
+        </section>
+
+        <!-- 💖 FINAL EVERLASTING SECTION -->
+        <section id="final" class="section final-section">
+            <div class="final-container fade-in-up">
+                <div class="moon-visual">
+                    <div class="moon-glow-ring"></div>
+                    <div class="moon"></div>
+                    <div class="moon-stars">✨ ⭐ ✨</div>
+                </div>
+
+                <blockquote class="final-quote">
+                    "Some people make life more beautiful simply by being themselves."
+                </blockquote>
+
+                <h2 class="final-title">Happy Birthday <span class="heart-pulse">❤️</span></h2>
+
+                <div class="glass-card final-message-card">
+                    <p class="final-text">
+                        No matter where life takes us,<br>
+                        I hope today fills your heart with happiness,<br>
+                        your mind with peace,<br>
+                        and your life with countless beautiful memories.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🌸 FOOTER -->
+        <footer class="app-footer">
+            <p>Made with <span class="footer-heart">❤️</span> by <strong class="author-name">Vinoth</strong></p>
+            <p class="footer-sub">✨ A Little Universe Made Just For You ✨</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
